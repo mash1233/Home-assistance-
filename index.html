@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Arduino Control Panel</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.min.js"></script>
+
+<style>
+body{
+    background:#222;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+button{
+    padding:15px;
+    margin:10px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#ledOn{background:#ff5555;}
+#ledOff{background:#ff7777;}
+#toggle{background:#55ff55;}
+#buzzerOn{background:#ffdd55;}
+#buzzerOff{background:#ffaa55;}
+
+img{
+    margin-top:20px;
+    border:2px solid white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Arduino Control Panel</h1>
+
+<button id="ledOn">LED ON</button>
+<button id="ledOff">LED OFF</button>
+<button id="toggle">LED TOGGLE</button>
+<button id="buzzerOn">BUZZER ON</button>
+<button id="buzzerOff">BUZZER OFF</button>
+
+<h2>Live Camera</h2>
+<img src="/video" width="640">
+
+<script>
+var socket = io();
+
+document.getElementById("ledOn").onclick=function(){
+socket.emit("command",{command:"LED1_ON"});
+};
+
+document.getElementById("ledOff").onclick=function(){
+socket.emit("command",{command:"LED1_OFF"});
+};
+
+document.getElementById("toggle").onclick=function(){
+socket.emit("command",{command:"LED2_TOGGLE"});
+};
+
+document.getElementById("buzzerOn").onclick=function(){
+socket.emit("command",{command:"BUZZER_ON"});
+};
+
+document.getElementById("buzzerOff").onclick=function(){
+socket.emit("command",{command:"BUZZER_OFF"});
+};
+</script>
+
+</body>
+</html>
