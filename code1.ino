@@ -17,7 +17,6 @@ void setup() {
 
 void loop() {
 
-  // ----------- Handle Serial Commands -----------
   if (Serial.available()) {
     command = Serial.readStringUntil('\n');
     command.trim();
@@ -33,7 +32,7 @@ void loop() {
     }
 
     else if (command == "LED2_TOGGLE") {
-      blinkMode = !blinkMode;   // Toggle blinking mode
+      blinkMode = !blinkMode;  
     }
 
     else if (command == "BUZZER_ON") {
@@ -45,7 +44,6 @@ void loop() {
     }
   }
 
-  // ----------- Handle Blinking (Non-blocking) -----------
   if (blinkMode) {
     unsigned long currentMillis = millis();
 
